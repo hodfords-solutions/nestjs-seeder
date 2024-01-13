@@ -1,0 +1,7 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["nestjs", "hodfords", "typeorm"],
+  "flagWords": ["hte"],
+  "ignorePaths": ["node_modules", "test", "*.spec.ts"]
+}
