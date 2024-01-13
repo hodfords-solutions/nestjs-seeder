@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { runSeeder, scanFactories } from './seeder.helper';
 import { BaseCommand, Command } from '@hodfords/nestjs-command';
+import { Inject, Injectable } from '@nestjs/common';
 import { SEEDER } from './seeder.constant';
+import { runSeeder, scanFactories } from './seeder.helper';
 
 @Command({
     signature: 'seeder',
@@ -15,9 +15,7 @@ import { SEEDER } from './seeder.constant';
 })
 @Injectable()
 export class SeederCommand extends BaseCommand {
-    constructor(
-        @Inject(SEEDER) private seeds: any
-    ) {
+    constructor(@Inject(SEEDER) private seeds: any) {
         super();
     }
 
