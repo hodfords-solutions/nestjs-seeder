@@ -1,8 +1,8 @@
+import { isString } from '@nestjs/common/utils/shared.utils';
+import { glob } from 'glob';
+import path from 'path';
 import { BaseEntity, ObjectType } from 'typeorm';
 import { SeederFactory } from './seeder.factory';
-import { glob } from 'glob';
-import { isString } from '@nestjs/common/utils/shared.utils';
-import path from 'path';
 
 const factories = {};
 
@@ -43,6 +43,7 @@ export async function scanFactories() {
 
 export async function runSeeder(seeder) {
     if (isString(seeder)) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         let seed = require(seeder);
         await new seed().run();
     } else {

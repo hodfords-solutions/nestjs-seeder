@@ -1,12 +1,16 @@
 {
   "name": "@hodfords/nestjs-seeder",
-  "version": "8.0.0",
+  "version": "10.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "postbuild": "cp package.json dist/package.json"
+    "postbuild": "cp package.json dist/package.json",
+    "cspell": "cspell --no-must-find-files libs/**/*.{ts,js}",
+    "prepare": "is-ci || husky install",
+    "format": "prettier --write \"libs/**/*.ts\"",
+    "lint": "eslint \"libs/**/*.ts\" --fix --max-warnings 0"
   },
   "repository": {
     "type": "git",
@@ -19,19 +23,28 @@
     "url": "https://github.com/hodfords-solutions/nestjs-seeder/issues"
   },
   "homepage": "https://github.com/hodfords-solutions/nestjs-seeder#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@nestjs/common": "8.0.5",
-    "@nestjs/core": "8.0.5",
-    "@nestjs/testing": "^8.0.6",
-    "@types/node": "^16.6.1",
-    "commander": "^8.1.0",
-    "lodash": "^4.17.21",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.3.0",
-    "typeorm": "^0.2.37",
-    "typescript": "^4.3.5",
-    "@hodfords/nestjs-command": "1.0.7"
+    "@hodfords/nestjs-command": "1.0.7",
+    "@nestjs/common": "10.2.10",
+    "@nestjs/core": "10.2.10",
+    "@nestjs/testing": "10.3.0",
+    "@types/node": "20.10.6",
+    "@typescript-eslint/eslint-plugin": "6.16.0",
+    "@typescript-eslint/parser": "6.16.0",
+    "commander": "11.1.0",
+    "cspell": "8.3.1",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.1.2",
+    "husky": "8.0.3",
+    "is-ci": "3.0.1",
+    "lint-staged": "15.2.0",
+    "lodash": "4.17.21",
+    "prettier": "3.1.1",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "3.0.2",
+    "rxjs": "7.8.1",
+    "typeorm": "0.3.17",
+    "typescript": "5.3.3"
   }
 }
