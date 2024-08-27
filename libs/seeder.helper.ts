@@ -14,20 +14,8 @@ export function factory<Entity extends BaseEntity>(entity: ObjectType<Entity>) {
     return new SeederFactory<Entity>(factories[entity.toString()]);
 }
 
-function getListFile(filePattern): Promise<string[]> {
-    return new Promise<string[]>((resolve, reject) => {
-        new glob.Glob(filePattern, {}, (error, files) => {
-            if (error) {
-                reject(error);
-            } else {
-                try {
-                    resolve(files);
-                } catch (e) {
-                    reject(e);
-                }
-            }
-        });
-    });
+function getListFile(filePattern: string): Promise<string[]> {
+    return glob(filePattern, {});
 }
 
 export async function scanFactories() {
@@ -37,13 +25,14 @@ export async function scanFactories() {
         files = await getListFile(path.resolve(`${rootPath}/**/databases/factories/*.factory.js`));
     }
     for (let file of files) {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         require(file);
     }
 }
 
 export async function runSeeder(seeder) {
     if (isString(seeder)) {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
         let seed = require(seeder);
         await new seed().run();
     } else {
