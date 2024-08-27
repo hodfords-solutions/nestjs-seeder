@@ -3,9 +3,7 @@ import { SeederCommand } from './seeder.command';
 import { SEEDER } from './seeder.constant';
 
 @Module({
-    providers: [
-        SeederCommand
-    ],
+    providers: [SeederCommand],
     exports: [],
     imports: []
 })
