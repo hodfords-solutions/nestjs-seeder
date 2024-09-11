@@ -1,29 +1,33 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="http://opensource.hodfords.uk" target="blank"><img src="https://opensource.hodfords.uk/img/logo.svg" width="320" alt="Hodfords Logo" /></a>
 </p>
 
-# nestjs-seeder
-
-## Description
-Nestjs seeder help you easily seeding fake data to create mocking request API!
+<p align="center"> <b>nestjs-seeder</b> streamlines the process of populating your NestJS application with mock data. It makes it easy to generate and manage seed data, ideal for testing and simulating API responses.</p>
 
 ## Installation 🤖
-```typescript 
-npm install @hodfords/nestjs-seeder --save-dev 
+
+Install the `nestjs-seeder` package with:
+
+```
+npm install @hodfords/nestjs-seeder --save
 ```
 
-## Usage ⚡
-Let say we want to seed the fake `user` data into our database
-Following these 6 steps
+## Usage 🚀
 
-### 1. Define the Factory
-Define the factory for `UserEntity`
+To seed fake user data into your database, follow these 6 steps:
+
+#### 1. Define the Factory
+
+First, create a factory for UserEntity. This factory will generate fake data for user records.
+
+##### user.factory.ts
 
 ```typescript
-// user.factory.ts
 import { define } from '@hodfords/nestjs-seeder';
 
-interface SeedUserOptions { countryId: string };
+interface SeedUserOptions {
+    countryId: string;
+}
 
 class UserEntity {
     name: string;
@@ -43,11 +47,13 @@ define(UserEntity, (options: SeedUserOptions) => {
 });
 ```
 
-### 2. Create the BaseSeeder
-Export the abstract class BaseSeeder imported from the library
+#### 2. Create the BaseSeeder
+
+Create a base seeder class that will be used to configure and run your seeding logic.
+
+##### base.seeder.ts
 
 ```typescript
-// base.seeder.ts
 import { Test } from '@nestjs/testing';
 import { AppModule } from '~app.module';
 import { databaseConfig } from '~config/database.config';
@@ -64,17 +70,21 @@ export abstract class BaseSeeder extends AbstractSeeder {
 }
 ```
 
-### 3. Create the UserSeed
-We need to create a class extending the `BaseSeeder` imported from the library.
+#### 3. Create the UserSeed
+
+Implement a seeder class that extends BaseSeeder. Use the factory methods to generate and save data.
 
 **There are 3 methods to seed a fake data from factory method**
-1. createOne(options?: any): Entity;
-2. saveOne(options?: any): Promise<Entity>;
-3. saveMany(count: number, options?: any): Promise<Entity[]>;
-
 
 ```typescript
-// user.seed.ts
+createOne(options?: any): Entity;
+saveOne(options?: any): Promise<Entity>;
+saveMany(count: number, options?: any): Promise<Entity[]>;
+```
+
+##### user.seed.ts
+
+```typescript
 import { BaseSeeder } from '~core/seeders/base-seeder';
 import { factory } from '@hodfords/nestjs-seeder';
 import faker from 'faker';
@@ -90,16 +100,19 @@ export class UserSeed extends BaseSeeder {
 }
 ```
 
-### 4. Create the seedConfig and add the UserSeeder to it
-- Import the SeederModule from library
-- Import the UserSeed which we just created and add to the array to use later
+#### 4. Create the seedConfig
+
+Set up the seed configuration to include your seed classes.
 
 ```typescript
-import { SeederModule } from '@hodfords/nestjs-seeder'; 
+import { SeederModule } from '@hodfords/nestjs-seeder';
 export const seedConfig = SeederModule.forRoot([UserSeed]);
 ```
 
-### 5. Import seedConfig into AppModule
+#### 5. Import seedConfig into AppModule
+
+Integrate the seed configuration into your main application module.
+
 ```typescript
 @Module({
     imports: [seedConfig],
@@ -108,7 +121,15 @@ export const seedConfig = SeederModule.forRoot([UserSeed]);
 })
 export class AppModule {}
 ```
-### 6. Run seeder
+
+#### 6. Run the seeder
+
+Execute the seeder command to populate your database with the defined fake data.
+
 ```typescript
-wz-command seeder 
+wz-command seeder
 ```
+
+## License 📝
+
+This project is licensed under the MIT License
