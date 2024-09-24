@@ -1,16 +1,16 @@
 {
   "name": "@hodfords/nestjs-seeder",
-  "version": "10.1.1",
+  "version": "10.1.2",
   "description": "A tool for seeding databases in NestJS apps",
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
     "postbuild": "cp package.json dist/package.json",
-    "cspell": "cspell --no-must-find-files libs/**/*.{ts,js}",
+    "cspell": "cspell --no-must-find-files lib/**/*.{ts,js}",
     "prepare": "is-ci || husky",
-    "format": "prettier --write \"libs/**/*.ts\"",
-    "lint": "eslint \"libs/**/*.ts\" --fix --max-warnings 0"
+    "format": "prettier --write \"lib/**/*.ts\"",
+    "lint": "eslint \"lib/**/*.ts\" --fix --max-warnings 0"
   },
   "repository": {
     "type": "git",
@@ -24,28 +24,26 @@
   },
   "homepage": "https://github.com/hodfords-solutions/nestjs-seeder#readme",
   "devDependencies": {
-    "@hodfords/nestjs-command": "10.1.0",
-    "@nestjs/common": "10.4.1",
-    "@nestjs/core": "10.4.1",
-    "@nestjs/testing": "10.4.1",
-    "@types/node": "22.5.0",
-    "@typescript-eslint/eslint-plugin": "8.3.0",
-    "@typescript-eslint/parser": "8.3.0",
+    "@hodfords/nestjs-command": "10.1.1",
+    "@nestjs/common": "10.4.4",
+    "@nestjs/core": "10.4.4",
+    "@nestjs/testing": "10.4.4",
+    "@types/node": "22.6.1",
     "commander": "12.1.0",
-    "cspell": "8.14.2",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "husky": "9.1.5",
+    "cspell": "8.14.4",
+    "eslint": "9.11.1",
+    "husky": "9.1.6",
     "is-ci": "3.0.1",
-    "lint-staged": "15.2.9",
+    "lint-staged": "15.2.10",
     "lodash": "4.17.21",
     "prettier": "3.3.3",
     "reflect-metadata": "0.2.2",
     "rimraf": "6.0.1",
     "rxjs": "7.8.1",
     "typeorm": "0.3.20",
-    "typescript": "5.5.4"
+    "typescript": "5.6.2",
+    "@hodfords/nestjs-eslint-config": "10.0.4",
+    "@hodfords/nestjs-prettier-config": "10.0.1"
   },
   "dependencies": {
     "glob": "^11.0.0"
