@@ -4,8 +4,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 export abstract class BaseSeeder {
     static module: TestingModule;
 
-    async createModule() {
-        return await Test.createTestingModule({
+    async createModule(): Promise<TestingModule> {
+        return Test.createTestingModule({
             imports: []
         }).compile();
     }
