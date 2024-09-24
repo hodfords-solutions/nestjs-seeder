@@ -8,8 +8,8 @@ import { SEEDER } from './seeder.constant';
     imports: []
 })
 export class SeederModule {
-    public static forRoot(options: any): DynamicModule {
-        const seederProvider: ValueProvider<any> = {
+    public static forRoot(options: object): DynamicModule {
+        const seederProvider: ValueProvider<object> = {
             provide: SEEDER,
             useValue: options
         };
