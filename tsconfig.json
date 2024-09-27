@@ -12,14 +12,17 @@
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@hodfords/nestjs-seeder": ["lib"],
+    }
   },
   "include": [
-    "lib"
+    "lib",
+    "src"
   ],
   "exclude": [
     "tests",
-    "src",
     "dist",
     "node_modules"
   ]
