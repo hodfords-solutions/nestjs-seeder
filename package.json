@@ -1,16 +1,20 @@
 {
   "name": "@hodfords/nestjs-seeder",
-  "version": "10.1.2",
+  "version": "10.1.3",
   "description": "A tool for seeding databases in NestJS apps",
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
+    "postbuild": "cp package.json dist/lib && cp README.md dist/lib && cp .npmrc dist/lib",
     "build": "tsc",
-    "postbuild": "cp package.json dist && cp README.md dist && cp .npmrc dist",
+    "start": "ts-node src/index.ts",
+    "wz-command": "wz-command",
     "cspell": "cspell --no-must-find-files lib/**/*.{ts,js}",
     "prepare": "is-ci || husky",
-    "format": "prettier --write \"lib/**/*.ts\"",
-    "lint": "eslint \"lib/**/*.ts\" --fix --max-warnings 0"
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" \"lib/**/*.ts\"",
+    "lint": "eslint \"lib/**/*.ts\" \"src/**/*.ts\" --fix --max-warnings 0",
+    "lint-staged": "lint-staged",
+    "test": "jest --passWithNoTests  --testTimeout=450000"
   },
   "repository": {
     "type": "git",
@@ -24,28 +28,52 @@
   },
   "homepage": "https://github.com/hodfords-solutions/nestjs-seeder#readme",
   "devDependencies": {
-    "@hodfords/nestjs-command": "10.1.1",
+    "@hodfords/nestjs-command": "10.1.2",
+    "@nestjs/cli": "10.4.5",
     "@nestjs/common": "10.4.4",
     "@nestjs/core": "10.4.4",
     "@nestjs/testing": "10.4.4",
-    "@types/node": "22.6.1",
+    "@nestjs/typeorm": "10.0.2",
+    "@types/node": "22.7.3",
+    "@types/jest": "29.5.13",
+    "@faker-js/faker": "9.0.3",
     "commander": "12.1.0",
     "cspell": "8.14.4",
     "eslint": "9.11.1",
     "husky": "9.1.6",
     "is-ci": "3.0.1",
+    "jest": "29.7.0",
     "lint-staged": "15.2.10",
     "lodash": "4.17.21",
+    "pg": "8.13.0",
     "prettier": "3.3.3",
     "reflect-metadata": "0.2.2",
     "rimraf": "6.0.1",
     "rxjs": "7.8.1",
+    "ts-jest": "29.2.5",
     "typeorm": "0.3.20",
     "typescript": "5.6.2",
-    "@hodfords/nestjs-eslint-config": "10.0.4",
+    "@hodfords/nestjs-eslint-config": "10.0.5",
     "@hodfords/nestjs-prettier-config": "10.0.1"
   },
   "dependencies": {
     "glob": "^11.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }
