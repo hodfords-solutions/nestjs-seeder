@@ -1,6 +1,6 @@
 {
   "name": "@hodfords/nestjs-seeder",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "A tool for seeding databases in NestJS apps",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/hodfords-solutions/nestjs-seeder#readme",
   "devDependencies": {
     "@faker-js/faker": "9.4.0",
-    "@hodfords/nestjs-command": "11.0.2",
+    "@hodfords/nestjs-command": "11.0.3",
     "@hodfords/nestjs-eslint-config": "11.0.0",
     "@hodfords/nestjs-prettier-config": "11.0.0",
     "@nestjs/cli": "11.0.2",
@@ -57,7 +57,6 @@
     "typescript": "5.7.3"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
     "glob": "^11.0.1"
   },
   "jest": {
