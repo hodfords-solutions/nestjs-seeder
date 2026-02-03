@@ -46,8 +46,9 @@ export class TestHelper {
     }
 
     private async clearDatabase(): Promise<void> {
-        await UserEntity.delete({});
-        await CountryEntity.delete({});
+        // Use raw SQL to truncate tables with CASCADE to avoid foreign key constraint errors
+        await this.dataSource.query('TRUNCATE TABLE "User" RESTART IDENTITY CASCADE');
+        await this.dataSource.query('TRUNCATE TABLE "Country" RESTART IDENTITY CASCADE');
     }
 
     async closeConnection(): Promise<void> {
