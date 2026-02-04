@@ -15,7 +15,7 @@ describe('CountrySeed', () => {
     });
 
     beforeEach(async () => {
-        await UserEntity.delete({});
+        await UserEntity.clear();
     });
 
     it('should create a country and 100 users', async () => {
