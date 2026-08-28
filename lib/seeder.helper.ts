@@ -1,4 +1,4 @@
-import { isString } from '@nestjs/common/utils/shared.utils';
+import { isString } from '@nestjs/common/utils/shared.utils.js';
 import { glob } from 'glob';
 import path from 'path';
 import { pathToFileURL } from 'url';
