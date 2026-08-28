@@ -82,7 +82,6 @@
         "@hodfords/nestjs-command": {
             "@nestjs/common": "$@nestjs/common",
             "@nestjs/core": "$@nestjs/core"
-        },
-        "ioredis": "^5.8.2"
+        }
     }
 }
