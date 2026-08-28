@@ -1,6 +1,6 @@
-import { UserEntity } from '../../entities/user.entity';
+import { UserEntity } from '../../entities/user.entity.js';
 import { faker } from '@faker-js/faker';
-import { define } from '../../../lib/seeder.helper';
+import { define } from '../../../lib/seeder.helper.js';
 
 interface SeedUserOptions {
     countryId: string;

@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
-import { CountryEntity } from '../src/entities/country.entity';
-import { UserEntity } from '../src/entities/user.entity';
-import { CreateCountryTable1637223647945 } from '../src/databases/migrations/1637223647945-create-country-table.migration';
-import { CreateUserTable1637223647946 } from '../src/databases/migrations/1637223647946-create-user-table.migration';
+import { CountryEntity } from '../src/entities/country.entity.js';
+import { UserEntity } from '../src/entities/user.entity.js';
+import { CreateCountryTable1637223647945 } from '../src/databases/migrations/1637223647945-create-country-table.migration.js';
+import { CreateUserTable1637223647946 } from '../src/databases/migrations/1637223647946-create-user-table.migration.js';
 
 export class TestHelper {
     private dataSource: DataSource;
@@ -10,14 +10,12 @@ export class TestHelper {
     async initialize() {
         await this.createConnection();
         await this.clearDatabase();
-        this.requireFactories();
+        await this.loadFactories();
     }
 
-    private requireFactories() {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        require('../src/databases/factories/country.factory');
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        require('../src/databases/factories/user.factory');
+    private async loadFactories(): Promise<void> {
+        await import('../src/databases/factories/country.factory.js');
+        await import('../src/databases/factories/user.factory.js');
     }
 
     private async createConnection(): Promise<void> {

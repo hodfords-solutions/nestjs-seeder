@@ -1,6 +1,6 @@
 import { DynamicModule, Module, ValueProvider } from '@nestjs/common';
-import { SeederCommand } from './seeder.command';
-import { SEEDER } from './seeder.constant';
+import { SeederCommand } from './seeder.command.js';
+import { SEEDER } from './seeder.constant.js';
 
 @Module({
     providers: [SeederCommand],

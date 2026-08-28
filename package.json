@@ -2,19 +2,34 @@
     "name": "@hodfords/nestjs-seeder",
     "version": "11.0.3",
     "description": "A tool for seeding databases in NestJS apps",
-    "main": "index.js",
+    "type": "module",
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./index.d.ts",
+            "import": "./index.js",
+            "default": "./index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "engines": {
+        "node": ">=20.19.0"
+    },
     "scripts": {
         "prebuild": "rimraf dist",
         "postbuild": "cp package.json dist/lib && cp README.md dist/lib && cp .npmrc dist/lib",
         "build": "tsc",
-        "start": "ts-node src/index.ts",
+        "start": "node --experimental-strip-types src/index.ts",
         "wz-command": "wz-command",
         "cspell": "cspell --no-must-find-files lib/**/*.{ts,js}",
         "prepare": "is-ci || husky",
         "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" \"lib/**/*.ts\"",
         "lint": "eslint \"lib/**/*.ts\" \"src/**/*.ts\" --fix --max-warnings 0",
         "lint-staged": "lint-staged",
-        "test": "jest --passWithNoTests  --testTimeout=450000"
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:cov": "vitest run --coverage"
     },
     "repository": {
         "type": "git",
@@ -32,19 +47,18 @@
         "@hodfords/nestjs-command": "11.0.6",
         "@hodfords/nestjs-eslint-config": "11.0.2",
         "@hodfords/nestjs-prettier-config": "11.0.1",
-        "@nestjs/cli": "11.0.16",
-        "@nestjs/common": "11.1.12",
-        "@nestjs/core": "11.1.12",
-        "@nestjs/testing": "11.1.12",
+        "@nestjs/cli": "12.0.0",
+        "@nestjs/common": "12.0.1",
+        "@nestjs/core": "12.0.1",
+        "@nestjs/testing": "12.0.1",
         "@nestjs/typeorm": "11.0.0",
-        "@types/jest": "30.0.0",
+        "@swc/core": "^1.13.5",
         "@types/node": "25.2.0",
         "commander": "13.1.0",
         "cspell": "9.6.3",
         "eslint": "9.39.2",
         "husky": "9.1.7",
         "is-ci": "4.1.0",
-        "jest": "30.2.0",
         "lint-staged": "16.2.7",
         "lodash": "4.17.23",
         "pg": "8.18.0",
@@ -52,31 +66,28 @@
         "reflect-metadata": "0.2.2",
         "rimraf": "6.1.2",
         "rxjs": "7.8.2",
-        "ts-jest": "29.4.6",
-        "typeorm": "0.3.28",
-        "typescript": "5.9.3"
+        "typeorm": "1.1.0",
+        "typescript": "5.9.3",
+        "unplugin-swc": "^1.5.7",
+        "vitest": "^4.1.10"
     },
     "dependencies": {
         "glob": "^13.0.0"
     },
-    "jest": {
-        "moduleFileExtensions": [
-            "js",
-            "json",
-            "ts"
-        ],
-        "rootDir": ".",
-        "testRegex": ".*\\.spec\\.ts$",
-        "transform": {
-            "^.+\\.(t|j)s$": "ts-jest"
+    "peerDependencies": {
+        "@nestjs/common": ">=12.0.0",
+        "@nestjs/core": ">=12.0.0"
+    },
+    "overrides": {
+        "@nestjs/typeorm": {
+            "@nestjs/common": "$@nestjs/common",
+            "@nestjs/core": "$@nestjs/core",
+            "typeorm": "$typeorm"
         },
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@faker-js)/)"
-        ],
-        "collectCoverageFrom": [
-            "**/*.(t|j)s"
-        ],
-        "coverageDirectory": "../coverage",
-        "testEnvironment": "node"
+        "@hodfords/nestjs-command": {
+            "@nestjs/common": "$@nestjs/common",
+            "@nestjs/core": "$@nestjs/core"
+        },
+        "ioredis": "^5.8.2"
     }
 }

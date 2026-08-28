@@ -1,6 +1,6 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CountryEntity } from '../../entities/country.entity';
-import { UserEntity } from '../../entities/user.entity';
+import { CountryEntity } from '../../entities/country.entity.js';
+import { UserEntity } from '../../entities/user.entity.js';
 
 export const databaseConfig = TypeOrmModule.forRoot({
     type: 'postgres',

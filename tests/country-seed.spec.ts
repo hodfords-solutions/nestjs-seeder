@@ -1,6 +1,7 @@
-import { CountrySeed } from '../src/seeds/country.seed';
-import { CountryEntity } from '../src/entities/country.entity';
-import { TestHelper } from './test.helper';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { CountrySeed } from '../src/seeds/country.seed.js';
+import { CountryEntity } from '../src/entities/country.entity.js';
+import { TestHelper } from './test.helper.js';
 
 describe('CountrySeed', () => {
     let testHelper: TestHelper;
