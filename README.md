@@ -12,6 +12,17 @@ Install the `nestjs-seeder` package with:
 npm install @hodfords/nestjs-seeder --save
 ```
 
+> [!IMPORTANT]
+> This package is **ESM-only**. It must be loaded with `import` (`require()` is not supported)
+> and needs Node.js `>=20.19` (or `>=22.12` / `>=24.15` / `>=26`).
+
+### Compatibility
+
+| `@hodfords/nestjs-seeder` | NestJS  |
+| ------------------------- | ------- |
+| `12.x`                    | `12.x`  |
+| `11.x`                    | `11.x`  |
+
 ## Usage 🚀
 
 To seed fake user data into your database, follow these 6 steps:

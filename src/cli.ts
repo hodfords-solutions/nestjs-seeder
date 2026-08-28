@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { CommandService } from '@hodfords/nestjs-command';
-import { AppModule } from './app.module';
-import { commandConfig } from './cores/configs/command.config';
+import { AppModule } from './app.module.js';
+import { commandConfig } from './cores/configs/command.config.js';
 
 async function bootstrap(): Promise<void> {
     const app = await NestFactory.create(AppModule);

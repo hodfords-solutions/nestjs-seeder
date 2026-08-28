@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { BaseSeeder as AbstractSeeder } from '../../../lib/base-seeder';
+import { BaseSeeder as AbstractSeeder } from '../../../lib/base-seeder.js';
 
 export abstract class BaseSeeder extends AbstractSeeder {
     createModule() {

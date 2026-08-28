@@ -1,8 +1,8 @@
 import { BaseCommand, Command } from '@hodfords/nestjs-command';
 import { Inject, Injectable } from '@nestjs/common';
-import { SEEDER } from './seeder.constant';
-import { runSeeder, scanFactories } from './seeder.helper';
-import { BaseSeeder } from './base-seeder';
+import { SEEDER } from './seeder.constant.js';
+import { runSeeder, scanFactories } from './seeder.helper.js';
+import { BaseSeeder } from './base-seeder.js';
 
 @Command({
     signature: 'seeder',

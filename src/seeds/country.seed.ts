@@ -1,6 +1,6 @@
-import { BaseSeeder } from '../cores/seeders/base.seeder';
-import { factory } from '../../lib/seeder.helper';
-import { CountryEntity } from '../entities/country.entity';
+import { BaseSeeder } from '../cores/seeders/base.seeder.js';
+import { factory } from '../../lib/seeder.helper.js';
+import { CountryEntity } from '../entities/country.entity.js';
 import { faker } from '@faker-js/faker';
 
 export class CountrySeed extends BaseSeeder {

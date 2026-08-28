@@ -1,13 +1,14 @@
 /* eslint-disable max-lines-per-function */
 import { Test, TestingModule } from '@nestjs/testing';
-import { SeederCommand } from '../lib/seeder.command';
-import { SEEDER } from '../lib/seeder.constant';
-import * as seederHelper from '../lib/seeder.helper';
+import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from 'vitest';
+import { SeederCommand } from '../lib/seeder.command.js';
+import { SEEDER } from '../lib/seeder.constant.js';
+import * as seederHelper from '../lib/seeder.helper.js';
 
 // Mock the seeder helper functions
-jest.mock('../lib/seeder.helper', () => ({
-    scanFactories: jest.fn(),
-    runSeeder: jest.fn()
+vi.mock('../lib/seeder.helper.js', () => ({
+    scanFactories: vi.fn(),
+    runSeeder: vi.fn()
 }));
 
 describe('SeederCommand', () => {
@@ -31,12 +32,12 @@ describe('SeederCommand', () => {
 
         // Mock the BaseCommand's program.opts() method
         command['program'] = {
-            opts: jest.fn()
+            opts: vi.fn()
         } as any;
     });
 
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it('should be defined', () => {
@@ -46,7 +47,7 @@ describe('SeederCommand', () => {
     describe('handle', () => {
         it('should run all seeders when no file is specified', async () => {
             // Mock program.opts() to return an empty object
-            (command['program'].opts as jest.Mock).mockReturnValue({});
+            (command['program'].opts as Mock).mockReturnValue({});
 
             await command.handle();
 
@@ -58,7 +59,7 @@ describe('SeederCommand', () => {
 
         it('should run a specific seeder when file is specified', async () => {
             // Mock program.opts() to return an object with file property
-            (command['program'].opts as jest.Mock).mockReturnValue({ file: 'specific-seeder' });
+            (command['program'].opts as Mock).mockReturnValue({ file: 'specific-seeder' });
 
             await command.handle();
 
@@ -69,9 +70,9 @@ describe('SeederCommand', () => {
 
         it('should call success method after running seeders', async () => {
             // Mock the BaseCommand's program.opts() method
-            (command['program'].opts as jest.Mock).mockReturnValue({ file: 'specific-seeder' });
+            (command['program'].opts as Mock).mockReturnValue({ file: 'specific-seeder' });
             // Spy on the success method
-            const successSpy = jest.spyOn(command, 'success');
+            const successSpy = vi.spyOn(command, 'success');
 
             await command.handle();
 

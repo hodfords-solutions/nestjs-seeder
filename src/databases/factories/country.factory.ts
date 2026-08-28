@@ -1,5 +1,5 @@
-import { define } from '../../../lib/seeder.helper';
-import { CountryEntity } from '../../entities/country.entity';
+import { define } from '../../../lib/seeder.helper.js';
+import { CountryEntity } from '../../entities/country.entity.js';
 import { faker } from '@faker-js/faker';
 
 interface SeedUserOptions {
