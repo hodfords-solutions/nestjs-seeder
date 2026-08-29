@@ -6,14 +6,18 @@ import { BaseEntity, ObjectType } from 'typeorm';
 import { SeederFactory } from './seeder.factory.js';
 import { BaseSeeder } from './base-seeder.js';
 
-const factories = {};
+/** Factory callbacks are stored with their options type erased; `define`/`factory` re-apply it. */
+const factories: Record<string, (options?: object) => unknown> = {};
 
-export function define<Entity>(entity: ObjectType<Entity>, callback: (options: object) => Entity): void {
-    factories[entity.toString()] = callback;
+export function define<Entity, Options extends object = object>(
+    entity: ObjectType<Entity>,
+    callback: (options: Options) => Entity
+): void {
+    factories[entity.toString()] = callback as (options?: object) => unknown;
 }
 
 export function factory<Entity extends BaseEntity>(entity: ObjectType<Entity>): SeederFactory<Entity> {
-    return new SeederFactory<Entity>(factories[entity.toString()]);
+    return new SeederFactory<Entity>(factories[entity.toString()] as (options?: object) => Entity);
 }
 
 function getListFile(filePattern: string): Promise<string[]> {

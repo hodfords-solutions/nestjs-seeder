@@ -1,6 +1,6 @@
 {
     "name": "@hodfords/nestjs-seeder",
-    "version": "12.0.0",
+    "version": "12.1.0",
     "description": "A tool for seeding databases in NestJS apps",
     "type": "module",
     "main": "./index.js",
@@ -17,7 +17,7 @@
         "node": ">=20.19.0"
     },
     "scripts": {
-        "prebuild": "rimraf dist",
+        "prebuild": "rimraf dist *.tsbuildinfo",
         "postbuild": "cp package.json dist/lib && cp README.md dist/lib && cp .npmrc dist/lib",
         "build": "tsc",
         "start": "node --experimental-strip-types src/index.ts",
@@ -67,7 +67,7 @@
         "rimraf": "6.1.2",
         "rxjs": "7.8.2",
         "typeorm": "1.1.0",
-        "typescript": "5.9.3",
+        "typescript": "6.0.3",
         "unplugin-swc": "^1.5.7",
         "vitest": "^4.1.10"
     },
